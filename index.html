@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infografías SED por Colegio</title>
+  <style>
+    :root{
+      --bg1:#667eea; --bg2:#764ba2;
+      --panel:#ffffff; --text:#1a1a1a;
+      --brand1:#1e3c72; --brand2:#2a5298;
+      --accent1:#f093fb; --accent2:#f5576c;
+      --info1:#4facfe; --info2:#00f2fe;
+      --vio1:#845ef7; --vio2:#5f3dc4;
+      --fmt1:#2ec4b6; --fmt2:#0fb9b1;
+      --shadow:0 20px 60px rgba(0,0,0,.3);
+      --radius-lg:20px; --radius-md:15px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);
+      min-height:100vh; padding:20px;
+    }
+    .container{
+      max-width:1200px;margin:0 auto 30px;background:var(--panel);
+      border-radius:var(--radius-lg); box-shadow:var(--shadow); overflow:hidden;
+      animation:fadeIn .5s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .header{
+      background:linear-gradient(135deg,var(--brand1),var(--brand2));
+      color:#fff; padding:40px; text-align:center;
+    }
+    .header h1{font-size:clamp(1.6rem,2.4vw,2.5rem); margin-bottom:10px}
+    .colegio-name{
+      font-size:clamp(1.2rem,2vw,2rem); margin-top:15px; padding:10px 20px;
+      background:rgba(255,255,255,.2); border-radius:10px; display:inline-block;
+    }
+    .content{padding:32px}
+    .section{margin-bottom:36px}
+    .section-title{
+      font-size:1.6rem; color:var(--brand1); margin-bottom:18px; padding-bottom:10px;
+      border-bottom:3px solid var(--bg1); display:flex; align-items:center; gap:10px;
+    }
+    .icon{font-size:1.4em}
+    .timeline{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:18px}
+    .timeline-item{
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      padding:22px; border-radius:var(--radius-md); color:#fff;
+      box-shadow:0 5px 15px rgba(0,0,0,.2);
+    }
+    .timeline-item.alt{background:linear-gradient(135deg,var(--info1),var(--info2))}
+    .timeline-item h3{
+      font-size:1.2rem; margin-bottom:12px; border-bottom:2px solid rgba(255,255,255,.3); padding-bottom:8px;
+    }
+    .date-box{background:rgba(255,255,255,.2); padding:10px; border-radius:8px; margin:10px 0}
+    .date-label{font-size:.9em; opacity:.9; margin-bottom:4px}
+    .date-value{font-size:1.05em; font-weight:800}
+    .enlaces-box{
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      padding:24px; border-radius:var(--radius-md); text-align:center;
+    }
+    .enlaces-box h3{color:#fff; font-size:1.3rem; margin-bottom:18px}
+    .link-button-large{
+      display:block; background:#fff; color:var(--brand1); padding:18px 22px; border-radius:12px;
+      text-decoration:none; font-weight:800; margin:12px 0; box-shadow:0 5px 15px rgba(0,0,0,.2);
+    }
+    /* ===== PERMISOS CHIPS COMPACTOS ===== */
+    .permisos-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:14px; margin-top:12px
+    }
+    .permiso-card{
+      padding:12px 14px; border-radius:16px; text-align:left;
+      box-shadow:0 5px 20px rgba(0,0,0,.12);
+      display:grid; grid-template-columns:auto 1fr auto; align-items:start; gap:12px;
+    }
+    .permiso-card.gestor{background:linear-gradient(135deg,var(--bg1),var(--bg2)); color:#fff}
+    .permiso-card.colaborador{background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff}
+    .permiso-icon{font-size:1.6rem}
+    .permiso-title{font-size:1rem; font-weight:800}
+    .permiso-badge{
+      background:rgba(255,255,255,.25); padding:4px 10px; border-radius:9999px;
+      font-size:.8em; font-weight:800; border:2px solid rgba(255,255,255,.45);
+      white-space:nowrap;
+    }
+    .permiso-description{
+      grid-column: 2 / -1; margin-top:4px; font-size:.86em; line-height:1.35;
+    }
+    /* ===== RECOMENDACIONES ===== */
+    .recomendaciones-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:12px}
+    .recomendacion-card{padding:18px; border-radius:12px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,.1)}
+    .card-prohibido{background:linear-gradient(135deg,#ff6b6b,#ee5a6f); color:#fff}
+    .card-importante{background:linear-gradient(135deg,#4facfe,#00f2fe); color:#fff}
+    .card-formatos{background:linear-gradient(135deg,var(--fmt1),var(--fmt2)); color:#fff}
+    .card-info{background:linear-gradient(135deg,#30cfd0,#330867); color:#fff}
+    .card-fecha{background:linear-gradient(135deg,var(--vio1),var(--vio2)); color:#fff}
+    .footer{background:#f8f9fa; padding:24px; text-align:center; color:#555}
+    @media (max-width: 768px){.timeline{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div id="infografias"></div>
+
+  <script>
+    const colegios = [
+      { nombre:"Argelia",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1RqZOVPT8AHCBOIrq7w9yX09-bVbKkJ0j?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1w-aqTZ16ytRFYAll_g8tkcsvhC0lQy8b?usp=drive_link"
+      },
+      { nombre:"Ciudad Chengdú",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1XaRhxVqJpfYbn3h3SgBjNG5i6TWzaSPs?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/17FaaSX1dxNZut985nEDWaaHdwJZBgfLl?usp=drive_link"
+      },
+      { nombre:"La Giralda",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1vteQ5M2sjai5tm6NZCtqAf2P542EDqDh?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1VAKTikgzsVxMKVUiT4w0UNXPfc12jWUL?usp=drive_link"
+      },
+      { nombre:"Jaime Garzón",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1K_QTA2HEL9-CCaANSMwZolp2dvl9auGX?usp=sharing",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1yM6_FUUtZXEjV2GrEgSjVoogkocDK7QH?usp=drive_link"
+      }
+    ];
+
+    function crearInfografia(colegio){
+      return `
+      <section class="container">
+        <header class="header">
+          <h1>📁 Cargue de Evidencias SED</h1>
+          <div class="colegio-name">🏫 ${colegio.nombre}</div>
+        </header>
+        <div class="content">
+          <div class="section">
+            <h2 class="section-title"><span class="icon">👥</span> Permisos Habilitados</h2>
+            <div class="permisos-grid">
+              <div class="permiso-card gestor">
+                <div class="permiso-icon">👨‍💼</div>
+                <div class="permiso-title">Rol de Gestor de Contenido</div>
+                <div class="permiso-badge">3 Enlaces por Colegio</div>
+                <p class="permiso-description">
+                  Las tres personas de enlace designadas por cada colegio son encargados de crear, editar, mover y eliminar el contenido para mantener la unidad organizada.
+                </p>
+              </div>
+              <div class="permiso-card colaborador">
+                <div class="permiso-icon">👥</div>
+                <div class="permiso-title">Rol de Colaboradores</div>
+                <div class="permiso-badge">Equipo Administrativo</div>
+                <p class="permiso-description">
+                  Los demás integrantes del equipo podrán cargar sus informes directamente en la carpeta correspondiente a su colegio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer">
+          <p><strong>Estamos atentos a cualquier novedad que se presente con el cargue de la información.</strong></p>
+          <p>Muchas gracias por todo su apoyo durante este proceso. 🙏</p>
+        </footer>
+      </section>`;
+    }
+
+    document.getElementById("infografias").innerHTML = colegios.map(c=>crearInfografia(c)).join("");
+  </script>
+</body>
+</html>
+
+
