@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infografías SED por Colegio</title>
+  <style>
+    :root{
+      --bg1:#667eea; --bg2:#764ba2;
+      --panel:#ffffff; --text:#1a1a1a;
+      --brand1:#1e3c72; --brand2:#2a5298;
+      --accent1:#f093fb; --accent2:#f5576c;
+      --info1:#4facfe; --info2:#00f2fe;
+      --vio1:#845ef7; --vio2:#5f3dc4;
+      --fmt1:#2ec4b6; --fmt2:#0fb9b1;
+      --shadow:0 20px 60px rgba(0,0,0,.3);
+      --radius-lg:20px; --radius-md:15px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 100%);
+      min-height:100vh; padding:20px;
+    }
+
+    /* Contenedor */
+    .container{
+      max-width:1200px;margin:0 auto 30px;background:var(--panel);
+      border-radius:var(--radius-lg); box-shadow:var(--shadow); overflow:hidden;
+      animation:fadeIn .5s ease;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Encabezado */
+    .header{
+      background:linear-gradient(135deg,var(--brand1),var(--brand2));
+      color:#fff; padding:40px; text-align:center;
+    }
+    .header h1{font-size:clamp(1.6rem,2.4vw,2.5rem); margin-bottom:10px}
+    .colegio-name{
+      font-size:clamp(1.2rem,2vw,2rem); margin-top:15px; padding:10px 20px;
+      background:rgba(255,255,255,.2); border-radius:10px; display:inline-block;
+    }
+
+    .content{padding:32px}
+    .section{margin-bottom:36px}
+    .section-title{
+      font-size:1.6rem; color:var(--brand1); margin-bottom:18px; padding-bottom:10px;
+      border-bottom:3px solid var(--bg1); display:flex; align-items:center; gap:10px;
+    }
+    .icon{font-size:1.4em}
+
+    /* Fechas */
+    .timeline{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:18px}
+    .timeline-item{
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      padding:22px; border-radius:var(--radius-md); color:#fff;
+      box-shadow:0 5px 15px rgba(0,0,0,.2);
+    }
+    .timeline-item.alt{background:linear-gradient(135deg,var(--info1),var(--info2))}
+    .timeline-item h3{
+      font-size:1.2rem; margin-bottom:12px; border-bottom:2px solid rgba(255,255,255,.3); padding-bottom:8px;
+    }
+    .date-box{background:rgba(255,255,255,.2); padding:10px; border-radius:8px; margin:10px 0}
+    .date-label{font-size:.9em; opacity:.9; margin-bottom:4px}
+    .date-value{font-size:1.05em; font-weight:800}
+
+    /* Enlaces */
+    .enlaces-box{
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      padding:24px; border-radius:var(--radius-md); text-align:center;
+    }
+    .enlaces-box h3{color:#fff; font-size:1.3rem; margin-bottom:18px}
+    .link-button-large{
+      display:block; background:#fff; color:var(--brand1); padding:18px 22px; border-radius:12px;
+      text-decoration:none; font-weight:800; margin:12px 0; box-shadow:0 5px 15px rgba(0,0,0,.2);
+    }
+
+    /* Permisos (chips compactos con descripción visible) */
+    .permisos-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:14px; margin-top:12px
+    }
+    .permiso-card{
+      padding:12px 14px; border-radius:16px; text-align:left;
+      box-shadow:0 5px 20px rgba(0,0,0,.12);
+      display:grid; grid-template-columns:auto 1fr auto; align-items:start; gap:12px;
+    }
+    .permiso-card.gestor{background:linear-gradient(135deg,var(--bg1),var(--bg2)); color:#fff}
+    .permiso-card.colaborador{background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff}
+    .permiso-icon{font-size:1.6rem}
+    .permiso-title{font-size:1rem; font-weight:800}
+    .permiso-badge{
+      background:rgba(255,255,255,.25); padding:4px 10px; border-radius:9999px;
+      font-size:.8em; font-weight:800; border:2px solid rgba(255,255,255,.45);
+      white-space:nowrap;
+    }
+    .permiso-description{
+      grid-column: 2 / -1; margin-top:4px; font-size:.86em; line-height:1.35;
+    }
+
+    /* Recomendaciones (estilo con icono, título y contenido) */
+    .recomendaciones-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px; margin-top:12px
+    }
+    .recomendacion-card{
+      padding:20px; border-radius:14px; text-align:center;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+    }
+    .card-prohibido{background:linear-gradient(135deg,#ff6b6b,#ee5a6f); color:#fff}
+    .card-importante{background:linear-gradient(135deg,#4facfe,#00f2fe); color:#fff}
+    .card-formatos{background:linear-gradient(135deg,var(--fmt1),var(--fmt2)); color:#fff}
+    .card-info{background:linear-gradient(135deg,#30cfd0,#330867); color:#fff}
+    .card-fecha{background:linear-gradient(135deg,var(--vio1),var(--vio2)); color:#fff}
+
+    .card-icon{
+      font-size:2.2em; margin-bottom:10px;
+      animation:bounce 2s infinite;
+    }
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    .card-title{
+      font-size:1.1em; font-weight:800; margin-bottom:8px;
+      text-shadow:2px 2px 4px rgba(0,0,0,.2);
+    }
+    .card-content{font-size:.95em; line-height:1.45; opacity:.98}
+
+    /* Footer */
+    .footer{background:#f8f9fa; padding:24px; text-align:center; color:#555}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .timeline{grid-template-columns:1fr}
+      .header h1{font-size:1.6rem}
+      .colegio-name{font-size:1.2rem}
+    }
+  </style>
+</head>
+<body>
+  <div id="infografias"></div>
+
+  <script>
+    const colegios = [
+      { nombre:"Argelia",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1RqZOVPT8AHCBOIrq7w9yX09-bVbKkJ0j?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1w-aqTZ16ytRFYAll_g8tkcsvhC0lQy8b?usp=drive_link"
+      },
+      { nombre:"Ciudad Chengdú",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1XaRhxVqJpfYbn3h3SgBjNG5i6TWzaSPs?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/17FaaSX1dxNZut985nEDWaaHdwJZBgfLl?usp=drive_link"
+      },
+      { nombre:"La Giralda",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1vteQ5M2sjai5tm6NZCtqAf2P542EDqDh?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1VAKTikgzsVxMKVUiT4w0UNXPfc12jWUL?usp=drive_link"
+      },
+      { nombre:"Jaime Garzón",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1K_QTA2HEL9-CCaANSMwZolp2dvl9auGX?usp=sharing",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1yM6_FUUtZXEjV2GrEgSjVoogkocDK7QH?usp=drive_link"
+      },
+      { nombre:"Jorge Isaacs",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1sjuAJ1nSA91dgFmAhjFimYqrNdRhm3ZP?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1hP42LqhXUE5JLLDkkI1iY0ZrLFWGWxfq?usp=drive_link"
+      },
+      { nombre:"Laurel de Cera",
+        enlaceNovDic:"https://drive.google.com/drive/folders/182VcfO9AK-EuaCQCBYRKvJwcVRT_knx6?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1GBKwwNfZ_oDrPoXsLdug0snvIkkElct6?usp=drive_link"
+      },
+      { nombre:"Las Margaritas",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1jQLDRmOajFz9wGKUwEq5t26fE2vok_-l?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1kwuGTnORF_jo647hj0FGCTPq-Hody0nq?usp=drive_link"
+      },
+      { nombre:"Miravalle",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1k7rIkzRxA7dlc3uniL1v7GlsjFcEarBX?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1H4K2t66D_g704GU_x_9OoFRPnrLDaqgF?usp=drive_link"
+      },
+      { nombre:"El Nogal",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1k3ET9H5CYsd-vMKiDkqQw9df489qGVq_?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1B8Ly8MfUmhAiwOLhIGbn8vF4VecrPEqC?usp=drive_link"
+      },
+      { nombre:"Parques de Bogotá",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1FMV7fIj4iZCkAN7sUeyECSZwhBO4okSn?usp=drive_link",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1lknIMXSvcPD9e-JnwzLHk_6Y_bX_AqVn?usp=drive_link"
+      },
+      { nombre:"Santiago de las Atalayas",
+        enlaceNovDic:"https://drive.google.com/drive/folders/1esiizoRcHmk24J5JadED98r9XxTTHUfP?usp=sharing",
+        enlaceInicioAno:"https://drive.google.com/drive/folders/1Z3jyV2dlU1Mc934v6x__vW-UNL5Ykrbi?usp=drive_link"
+      }
+    ];
+
+    function crearInfografia(colegio){
+      return `
+      <section class="container">
+        <header class="header">
+          <h1>📁 Cargue de Evidencias SED</h1>
+          <div class="colegio-name">🏫 ${colegio.nombre}</div>
+        </header>
+
+        <div class="content">
+          <!-- Fechas -->
+          <div class="section">
+            <h2 class="section-title"><span class="icon">📅</span> Fechas Importantes</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h3>📂 Noviembre - Diciembre 2025</h3>
+                <div class="date-box">
+                  <div class="date-label">Fecha límite de carga:</div>
+                  <div class="date-value">Jueves 27 de noviembre de 2025</div>
+                </div>
+                <div class="date-box">
+                  <div class="date-label">Inicio de revisión:</div>
+                  <div class="date-value">Viernes 28 de noviembre de 2025</div>
+                </div>
+              </div>
+              <div class="timeline-item alt">
+                <h3>🎒 Inicio Año Escolar 2026</h3>
+                <div class="date-box">
+                  <div class="date-label">Fecha límite de carga:</div>
+                  <div class="date-value">Jueves 04 de diciembre de 2025</div>
+                </div>
+                <div class="date-box">
+                  <div class="date-label">Inicio de revisión:</div>
+                  <div class="date-value">Viernes 05 de diciembre de 2025</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enlaces -->
+          <div class="section">
+            <h2 class="section-title"><span class="icon">🔗</span> Enlaces de Acceso - ${colegio.nombre}</h2>
+            <div class="enlaces-box">
+              <h3>📁 Accede a tus carpetas de Drive</h3>
+              <a href="${colegio.enlaceNovDic}" target="_blank" rel="noopener noreferrer" class="link-button-large">
+                📂 NOVIEMBRE - DICIEMBRE 2025
+              </a>
+              <a href="${colegio.enlaceInicioAno}" target="_blank" rel="noopener noreferrer" class="link-button-large">
+                🎒 INICIO AÑO ESCOLAR 2026
+              </a>
+            </div>
+          </div>
+
+          <!-- Permisos -->
+          <div class="section">
+            <h2 class="section-title"><span class="icon">👥</span> Permisos Habilitados</h2>
+            <div class="permisos-grid">
+              <div class="permiso-card gestor">
+                <div class="permiso-icon">👨‍💼</div>
+                <div class="permiso-title">Rol de Gestor de Contenido</div>
+                <div class="permiso-badge">3 Enlaces por Colegio</div>
+                <p class="permiso-description">
+                  Las tres personas de enlace designadas por cada colegio son encargados de crear, editar, mover y eliminar el contenido para mantener la unidad organizada.
+                </p>
+              </div>
+              <div class="permiso-card colaborador">
+                <div class="permiso-icon">👥</div>
+                <div class="permiso-title">Rol de Colaboradores</div>
+                <div class="permiso-badge">Equipo Administrativo</div>
+                <p class="permiso-description">
+                  Los demás integrantes del equipo podrán cargar sus informes directamente en la carpeta correspondiente a su colegio.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recomendaciones -->
+          <div class="section">
+            <h2 class="section-title"><span class="icon">⚠️</span> Recomendaciones Importantes</h2>
+            <div class="recomendaciones-grid">
+
+              <div class="recomendacion-card card-prohibido">
+                <div class="card-icon">🚫</div>
+                <div class="card-title">NO modificar la estructura de la Unidad Compartida</div>
+                <div class="card-content">No crear carpetas o subcarpetas adicionales.</div>
+              </div>
+
+              <div class="recomendacion-card card-importante">
+                <div class="card-icon">📝</div>
+                <div class="card-title">Nomenclatura Correcta</div>
+                <div class="card-content">Nombrar los archivos según los lineamientos de la SED.</div>
+              </div>
+
+              <div class="recomendacion-card card-formatos">
+                <div class="card-icon">📄</div>
+                <div class="card-title">Formatos de los Informes</div>
+                <div class="card-content">
+                  Para los informes y evidencias los documentos deben pasar a PDF, en el caso de los archivos en Excel se debe proteger las hojas del archivo para edición con la clave "<strong>4l14nzA*</strong>".
+                </div>
+              </div>
+
+              <div class="recomendacion-card card-info">
+                <div class="card-icon">💬</div>
+                <div class="card-title">Canal de Comunicación</div>
+                <div class="card-content">
+                  Las novedades después del plazo se informarán a través de las comunidades de WhatsApp de cada colegio.
+                </div>
+              </div>
+
+              <div class="recomendacion-card card-fecha">
+                <div class="card-icon">⏰</div>
+                <div class="card-title">Fecha límite</div>
+                <div class="card-content">
+                  A partir de la fecha de inicio de la revisión de los informes de cada período, los permisos de la unidad compartida se ajustarán a “solo lectura” para todo el equipo, impidiendo cualquier modificación de los archivos.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <p><strong>Estamos atentos a cualquier novedad que se presente con el cargue de la información.</strong></p>
+          <p style="margin-top:10px">Muchas gracias por todo su apoyo durante este proceso. 🙏</p>
+        </footer>
+      </section>`;
+    }
+
+    // Render: TODAS las infografías (11 colegios) sin filtro
+    document.getElementById("infografias").innerHTML = colegios.map(c=>crearInfografia(c)).join("");
+  </script>
+</body>
+</html>
